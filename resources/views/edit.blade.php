@@ -23,52 +23,46 @@ heigth:120px;
 <h1>Post Your Ad</h1>
 <hr>
 
-<form method="post" action="announces" enctype="multipart/form-data">
+<form method="post" action="{{ url('announces/'.$ads->id) }}" enctype="multipart/form-data">
+@method('PUT')
 @csrf
   <div class="form-group col-md-6">
     <label for="exampleFormControlSelect1">Choose Category :</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="category" value="{{ old('category') }}">
+    {{ $errors->first('category')}}
+
+    
+    <select class="form-control" id="exampleFormControlSelect1" name="category" >
+    <option value="{{ $category_selected->id }}"> {{ $category_selected->name_category }} </option>
       @foreach($categories as $categorie)
-      
       <option value="{{ $categorie->id}}">{{ $categorie -> name_category }}</option>
       @endforeach
+      
     </select>
-    {{ $errors->first('category')}}
   </div>
-
   <div class="form-group col-md-6">
     <label for="exampleFormControlSelect1">Choose City :</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="city" value="{{ old('city') }}">
+    {{ $errors->first('city')}}
+    <select class="form-control" id="exampleFormControlSelect1" name="city">
+    <option value="{{ $city_selected->id }}"> {{ $city_selected->name_city }} </option>
       @foreach($cities as $city)
       <option value="{{ $city -> id }}">{{ $city -> name_city }}</option>
       @endforeach
     </select>
-    {{ $errors->first('city')}}
   </div>
-
   <div class="form-group">
-  
+  {{ $errors->first('title') }}
     <label for="exampleFormControlInput1">Ad Title :</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="{{ old('title') }}">
-    @if(count($errors))
-    <div class="alert alert-danger" role="alert">{{ $errors->first('title')}}</div>
-    @endif
+    <input type="text" class="form-control" id="exampleFormControlInput1" name="title" value="{{ $ads->title }}">
   </div>
-
   <div class="form-group">
+  {{ $errors->first('description') }}
     <label for="exampleFormControlTextarea1">Description :</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description">{{ old('description') }}</textarea>
-    @if(count($errors))
-    <div class="alert alert-danger" role="alert">{{ $errors->first('description')}}</div>
-    @endif
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description">{{ $ads->description }}</textarea>
   </div>
-
   <div class="form-group col-md-4">
+  {{ $errors->first('price') }}
     <label for="exampleFormControlInput1">The Price :</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" name="price" value="{{ old('price') }}">
-    @if(count($errors))
-    <div class="alert alert-danger" role="alert">{{ $errors->first('price')}}</div>
-    @endif
+    <input type="text" class="form-control" id="exampleFormControlInput1" name="price" value="{{ $ads->price }}">
   </div>
 
 <div class="row">
@@ -101,7 +95,7 @@ heigth:120px;
   <br>
 
   <div class="d-flex justify-content-center">
-  <input type="submit" class="form-control btn btn-primary btn-lg" value="Submit Your Ad">
+  <input type="submit" class="form-control btn btn-danger btn-lg" value="Edit Your Ad">
   </div>
 
   

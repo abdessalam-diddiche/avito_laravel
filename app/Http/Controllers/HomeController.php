@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categorie;
+use App\City;
+use Auth;
+use App\Message;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Categorie::all();
+        $cities = City::all();
+
+        $messages = Message::where('id_seller', '=', auth()->user()->id)->get();
+        return view ('/home',['categories'=> $categories, 'cities'=>$cities] , compact('messages'));
+        
     }
 }

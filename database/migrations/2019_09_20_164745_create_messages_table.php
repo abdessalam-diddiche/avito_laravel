@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnnouncesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateAnnouncesTable extends Migration
      */
     public function up()
     {
-        Schema::create('announces', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('description');
-            $table->string('price');
-            $table->string('image1')->nullable();
-            $table->string('image2')->nullable();
-            $table->boolean('id_approved');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateAnnouncesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announces');
+        Schema::dropIfExists('messages');
     }
 }

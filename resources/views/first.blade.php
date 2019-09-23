@@ -47,13 +47,13 @@
             .title {
                 font-size: 84px;
             }
-            .links{
+            .city{
                 width:40%;
                 display:flex;
                 flex-direction:column;
             }
 
-            .links > a {
+            .city > a {
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 13px;
@@ -87,24 +87,36 @@
                 width:180px;
                 heigth:110px;
             }
+            .menu{
+              text-decoration:none;
+              color:black;
+              margin-left:22px;
+              font-size:20px;
+            }
 
         </style>
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+
+    
+  <nav class="navbar navbar-expand-lg" style="background-color: #C3F4EE; position:fixed; width:100%; z-index:3;margin-top:-17px;">
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <a class="navbar-brand" href="#"><img src="images/lareclame.png" width="70%" height="50px"></a>
+    <a class="menu" href="{{ url('categ') }}">List of Ads</a>
+    <a class="menu" href="home">Contact</a>
+    <a class="menu" href="home">A propos</a>
+
     
     <form class="form-inline my-2 my-lg-0">
     @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links" style="margin:8px">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}" style="margin-left:8px">Register</a>
                         @endif
                     @endauth
                 </div>
@@ -139,40 +151,39 @@
     <h1>Categories :</h1>
     <div class="row">
       <div class="col-lg-4">
-      <a href="#"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/informatic.jpg"></a>        <h3>Informatic & Multimedia</h3>
+      <a href="{{ url('postcat') }}?categories=1"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/informatic.jpg"></a>        <h3>Informatic & Multimedia</h3>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-      <a href="#"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/transport.jpg"></a>        <h3>Transportation</h3>
+      <a href="{{ url('postcat') }}?categories=2"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/transport.jpg"></a>        <h3>Transportation</h3>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <a href="#"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/home.jpg"></a>
+        <a href="{{ url('postcat') }}?categories=3"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/home.jpg"></a>
         <h3>Home & Garden</h3>
       </div>
       <div class="col-lg-4">
-      <a href="#"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/hobbies.jpg"></a>        <h3>Hobbies & Entertainment</h3>
+      <a href="{{ url('postcat') }}?categories=4"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/hobbies.jpg"></a>        <h3>Hobbies & Entertainment</h3>
       </div>
       <div class="col-lg-4">
-      <a href="#"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/beauty.jpg"></a>        <h3>Health & Beauty</h3>
+      <a href="{{ url('postcat') }}?categories=5"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/beauty.jpg"></a>        <h3>Health & Beauty</h3>
       </div>
       <div class="col-lg-4">
-      <a href="#"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/service.jpg"></a>        <h3>Operation & services</h3>
+      <a href="{{ url('postcat') }}?categories=6"><img class="bd-placeholder-img rounded-circle" width="140" height="140" src="images/opportunity.jpg"></a>        <h3>Good Opportunity</h3>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 </div>
 
 
                 <h1>Cities:</h1>
-                <div class="links">
+                <div class="city">
                 
-                    <a href="#">Casa Blanca</a>
-                    <a href="#">Rabat</a>
-                    <a href="#">Marrakech</a>
-                    <a href="#">Agadir</a>
-                    <a href="#">Fes</a>
-                    <a href="#">Tanger</a>
-                    <a href="#">Laayoune</a>
+                    <a href="{{ url('postcat') }}?cities=1">Casa Blanca</a>
+                    <a href="{{ url('postcat') }}?cities=2">Rabat</a>
+                    <a href="{{ url('postcat') }}?cities=3">Marrakech</a>
+                    <a href="{{ url('postcat') }}?cities=4">Agadir</a>
+                    <a href="{{ url('postcat') }}?cities=5">Fes</a>
+                    <a href="{{ url('postcat') }}?cities=6">Tanger</a>
+                    <a href="{{ url('postcat') }}?cities=7">Laayoune</a>
 
-                
                 </div>
 
 
@@ -230,9 +241,8 @@
 
         <!-- Footer -->
 
-<footer class="page-footer font-small unique-color-dark">
-
-<div style="background-color: #e3f2fd;">
+<footer class="page-footer font-small unique-color-dark" style="background-color: #AFCFD9">
+<div style="background-color: #C3F4EE;">
   <div class="container">
 
     <!-- Grid row-->
