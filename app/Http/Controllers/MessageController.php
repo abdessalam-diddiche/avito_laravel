@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categorie;
+use App\City;
 use App\Message;
 use App\User;
 use App\Announce;
@@ -36,5 +38,15 @@ class MessageController extends Controller
         session()->flash('success', 'Le message à bien été envoyer !!!');
         return back();
 
+    }
+
+    public function index()
+    {
+        $categories = Categorie::all();
+        $cities = City::all();
+
+        $messages = Message::where('id_seller', '=', auth()->user()->id)->get();
+        return view ('pagemessage',['categories'=> $categories, 'cities'=>$cities] , compact('messages'));
+        
     }
 }

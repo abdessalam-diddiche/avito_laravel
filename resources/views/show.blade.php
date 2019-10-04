@@ -3,12 +3,11 @@
 @section('content')
 
 
-<div id="logo" style="display: inline-block;">
-<a href="{{ url('acceuil') }}"><img src="images/logo.png" width="85%"></a>
+<div id="logo" style="margin-top:50px; width:300px; height:220px; margin-left:100px;">
+<a href="{{ url('acceuil') }}"><img src="{{ asset ('images/logo.png') }}" width="85%"></a>
 </div>
 
 
-    
 
 <div class="container" style="border:2px solid gray; background-color:#F5F5F5">
 <div class="row">

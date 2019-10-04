@@ -78,7 +78,7 @@ class PostController extends Controller
             ->join('cities', 'announces.id_city', '=', 'cities.id')
             ->join('categories', 'announces.id_category', '=', 'categories.id')
             ->select('announces.*', 'cities.name_city', 'categories.name_category')
-            ->where('deleted_at', null)
+            ->where('deleted_at', null) 
             ->where('id_user', $user->id)
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -87,7 +87,6 @@ class PostController extends Controller
          return view('list',['announces'=> $list]);
     }
 
-    
 
     public function edit($id){
       $user = Auth::user();
@@ -163,6 +162,7 @@ class PostController extends Controller
          return view('categ',['announces'=> $listannonce]);
  }
 
+ 
 
  public function postads(){
 
@@ -257,8 +257,60 @@ public function boot()
     Paginator::defaultView('view-categ');
     Paginator::defaultView('view-postcat');
 
-
 }
+
+public function adminlist(){
+        
+  $users = User::all()  
+  ->where('is_admin', 0);
+
+  return view ('admin',['users'=> $users]);
+}
+
+public function search(Request $request){
+  
+  $search=$request->get('search');
+  $searchannonce = DB::table('announces')
+  ->join('users','announces.id_user', '=', 'users.id')
+  ->join('cities', 'announces.id_city', '=', 'cities.id')
+  ->join('categories', 'announces.id_category', '=', 'categories.id')
+  ->select('announces.*', 'cities.name_city', 'categories.name_category','users.phone','users.email')
+  ->orderBy('created_at', 'desc')
+  ->where('deleted_at', null)
+  ->where('title', 'like', '%'.$search. '%')->get();
+
+  return view('search',['announces'=>$searchannonce]);
+}
+
+
+public function postadmin(){
+
+  $list = DB::table('announces')
+     ->join('cities', 'announces.id_city', '=', 'cities.id')
+     ->join('categories', 'announces.id_category', '=', 'categories.id')
+     ->join('users', 'announces.id_user', '=', 'users.id')
+     ->select('announces.*', 'cities.name_city', 'categories.name_category', 'users.username')
+     ->where('deleted_at', null)
+     ->orderBy('created_at', 'DESC')
+     ->get();
+
+  return view('postadmin',['announces'=> $list]);
+}
+
+public function updateApprouve($id)
+   {
+       $announces = Announce::find($id);
+       $announces->id_approved = 1;
+       //dd($annonces->is_approuved);
+       $announces->save();
+       $users = User::all();
+       /*Mail::send(new Annonce($annonces), ['annonce' => $annonces], function ($m) use ($annonces) {
+           $m->to($annonces->user->email, $annonces->user->name)->subject("Approbation d'article");
+       });*/
+       Mail::to($announces->users->email)->send(new Approbation($announces));
+       return back()->with('status',"Cette annonce a été approuvé");
+   }
+
 
 
 

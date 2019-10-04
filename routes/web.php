@@ -51,6 +51,37 @@ Route::get('/message/{id_seller}/{id_annonce}','MessageController@create')->name
 
 Route::post('/message','MessageController@store')->name('message.store');
 
+Route::get('admin', 'PostController@adminlist');
+
+Route::get('search', 'PostController@search');
+
+Route::get('pagemessage', 'MessageController@index');
+
+Route::get('postadmin', 'PostController@postadmin');
+
+Route::get('postadmine', 'PostController@updateApprouve');
+
+
+// Route::get('postadmin', function () {
+//     $users= User::find(Auth::id());
+//     $announces = Announce::where("id_approved","=" ,0)->get();
+    //dd($annonces);
+    // $categories = Categorie::all();
+    // $cities = City::all();
+    // if($users->is_admin === 1)
+    // {
+    // return view('annonce.postadmin',["announces" => $announces, "categories" => $categories,"cities" => $cities]);
+    // }
+    // else {
+    //     return redirect('/')->with('status', "Vous n'êtes pas un administrateur");
+    // }
+//  });
+
+
+
+
+
+
 
 
 

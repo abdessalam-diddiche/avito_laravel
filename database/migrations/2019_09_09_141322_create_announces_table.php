@@ -20,7 +20,7 @@ class CreateAnnouncesTable extends Migration
             $table->string('price');
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
-            $table->boolean('id_approved');
+            $table->boolean('id_approved')->nullable();
             $table->timestamps();
         });
     }

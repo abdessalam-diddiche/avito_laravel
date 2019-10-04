@@ -17,6 +17,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c2b9c1dd85.js"></script>
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -33,8 +35,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md" style="background-color: #C3F4EE; position:fixed; width:100%; z-index:3;">
-            <div class="container">
+        <nav class="navbar navbar-expand-md shadow p-3 mb-5 rounded" style="background-color: #C3F4EE; position:fixed; width:100%; z-index:3;">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     LaRéclame
                 </a>
@@ -52,10 +54,16 @@
 
 
                     </ul>
+                    <form class="form-inline my-2 my-lg-0" method="get" action="/search">
+                    @csrf
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <a href="{{ url('pagemessage') }}"><i class="fas fa-comment-dots" style="font-size:40px; color:blue;"></i></a>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

@@ -15,10 +15,9 @@ class AddForeignkeyIduserIntoUsersTable extends Migration
     {
         Schema::table('announces', function (Blueprint $table) {
             $table->unsignedBigInteger('id_user');
-
             $table->foreign('id_user')
-      ->references('id')->on('users')
-      ->onDelete('cascade');
+            ->references('id')->on('users')
+            ->onDelete('cascade');
         });
     }
 

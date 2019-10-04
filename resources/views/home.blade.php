@@ -101,9 +101,9 @@
 </div>
 
 
-<form method="post" action="/recherche">
+<form method="post" action="/recherche" style="margin-top:60px; margin-left:110px;">
 @csrf
-  <div class="form-group col-md-2">
+  <div class="form-group col-md-3" style="display:inline-block;">
     <select class="form-control" id="exampleFormControlSelect1" name="category" value="{{ old('category') }}">
       <option>Choose Category</option>
       @foreach($categories as $categorie)
@@ -112,7 +112,7 @@
     </select>
   </div>
 
-  <div class="form-group col-md-2">
+  <div class="form-group col-md-3" style="display:inline-block;">
     <select class="form-control" id="exampleFormControlSelect1" name="city" value="{{ old('city') }}">
     <option>Choose City</option>
       @foreach($cities as $city)
@@ -121,7 +121,7 @@
     </select>
   </div>
 
-  <div class="form-group col-md-1">
+  <div class="form-group col-md-2" style="display:inline-block;">
   <input type="submit" class="form-control btn btn-success" value="Search">
   </div>
 
@@ -180,14 +180,6 @@
 
                 </div>
 
-                <div class="aside" style="border:3px solid #C3F4EE; padding:7px;">
-                <h3>Boite de message :</h3>
-                <hr>
-                @foreach($messages as $message)
-    <p style="color:black">{{ $message->content }} </p> Envoyé par : <a href="#">{{ getBuyerName($message->id_buyer) }}</a>
-    <hr>
-    @endforeach
-                </div>
 
 
 
